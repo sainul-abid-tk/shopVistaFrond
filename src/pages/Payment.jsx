@@ -111,8 +111,10 @@ function Payment() {
           navigate(`/pdetails/${id}`)
         }} variant='contained' color='error'>Cancel</Button>
         <div className='flex space-x-3'>
-        <p className='text-lg font-bold text-green-500'>After replacement <DoubleArrowIcon/></p>  
-        <Button onClick={handlePay} style={{fontWeight:'bolder'}} variant='contained' color='warning'>{reProductAmt===Math.floor(pDetails?.price-pDetails?.price*pDetails?.discountPercentage/100)?'purchase':Math.floor(pDetails?.price-pDetails?.price*pDetails?.discountPercentage/100-reProductAmt)}</Button>
+        <p className='text-lg font-bold text-green-500'>{reProductAmt?'After replacement':'Proceed to pay'} <DoubleArrowIcon/></p>  
+        {reProductAmt?<Button onClick={handlePay} style={{fontWeight:'bolder'}} variant='contained' color='warning'>{reProductAmt===Math.floor(pDetails?.price-pDetails?.price*pDetails?.discountPercentage/100)?'purchase':Math.floor(pDetails?.price-pDetails?.price*pDetails?.discountPercentage/100)-reProductAmt}</Button>:
+        <Button onClick={handlePay} style={{fontWeight:'bolder'}} variant='contained' color='warning'>{Math.floor(pDetails?.price-pDetails?.price*pDetails?.discountPercentage/100)}</Button>
+        }
         </div>
       </div>
     </div>
