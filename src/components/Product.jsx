@@ -27,14 +27,13 @@ function Product({product,reProductId}) {
   },[reProductId])
   console.log(reProductAmt);
   const handleMore=()=>{
-    // reProductId? navigate(`/pdetails/${product.id}?RpId=${reProductId}`):
     if(!reProductAmt){
       navigate(`/pdetails/${product.id}`)
     }else{
       if(reProductAmt<=Math.floor(product.price-product?.price*product?.discountPercentage/100)){
        navigate(`/pdetails/${product.id}?RpId=${reProductId}`)
       }else{
-        toast.warning('You cannot replace this product beacause the product amount is less to your replacing product amount')
+        toast.warning('You cannot replace this product beacause the product amount is lower to your replacing product amount!!')
       }
     }
   }
